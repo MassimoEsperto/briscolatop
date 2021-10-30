@@ -1,0 +1,12 @@
+<div *ngIf="!loading">
+    <div class="d-grid gap-2">
+        <button class="btn btn-primary" type="button" [disabled]="disabled" (click)="submit.emit()">Esegui</button>
+    </div>
+</div>
+<div *ngIf="loading">
+    <div class="d-grid gap-2">
+        <button class="btn btn-primary" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        </button>
+    </div>
+</div>

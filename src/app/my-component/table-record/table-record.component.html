@@ -1,0 +1,22 @@
+<div class="table-responsive">
+<table class="table table-hover table-bordered">
+    <thead class="table-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">CHIAMANTE</th>
+        <th scope="col">CHIAMATO</th>
+        <th scope="col">RIS</th>
+        <th scope="col">DEL</th>
+      </tr>
+    </thead>
+    <tbody style="color: white;">
+      <tr *ngFor="let item of record; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{item.chiamante}}</td>
+        <td>{{item.chiamato}}</td>
+        <td>{{item.risultato}}</td>
+        <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myConfirmDialog" (click)="showDialog(item.id_record)">X</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

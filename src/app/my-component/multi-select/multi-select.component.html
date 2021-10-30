@@ -1,0 +1,23 @@
+<div class="d-grid">
+    <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+        aria-expanded="false" aria-controls="collapseExample">
+        Seleziona..   <span class="badge bg-primary">{{list_length}}</span>
+    </button>
+</div>
+
+<div class="collapse" id="collapseExample">
+    <div class="card text-white bg-secondary mb-3">
+
+        <div class="card-body">
+
+            <div *ngFor="let item of chechList; let i = index" class="form-check">
+                <input (change)="updateCheckedOptions(i,$event)" class="form-check-input" type="checkbox"
+                    [name]="item.id" [value]="item.desc" [(checked)]="item.checked">
+                <label class="form-check-label">
+                    {{item.desc}}
+                </label>
+            </div>
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+<div *ngIf="!loading">
+    <button class="btn btn-danger" type="button" data-bs-toggle="modal"
+      data-bs-target="#myConfirmDialog" (click)="showDialog()">{{testo}}</button>
+</div>
+
+<div *ngIf="loading">
+    <button class="btn btn-danger" type="button" disabled>
+      Loading.. <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    </button>
+</div>

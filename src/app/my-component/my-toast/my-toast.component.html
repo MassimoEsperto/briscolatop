@@ -1,0 +1,12 @@
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="liveToast"  class="toast" [ngClass]="{'fade-in': testo != ''}" role="alert">
+      <div class="toast-header">
+        <img src="../../../assets/img/info.png" class="rounded me-2" alt="if">
+        <strong class="me-auto">Segnalazione</strong>
+        <small>11 mins ago</small>
+      </div>
+      <div class="toast-body">
+        {{testo}}
+      </div>
+    </div>
+  </div>

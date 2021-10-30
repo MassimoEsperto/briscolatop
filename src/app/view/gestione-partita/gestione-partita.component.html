@@ -1,0 +1,97 @@
+<my-spinner [view]="loading_page"></my-spinner>
+<my-toast [testo]="errore"></my-toast>
+
+<div *ngIf="!loading_page">
+    <div *ngIf="isStart" class="gestione-match">
+        <h3>INIZIA MATCH</h3>
+        <br>
+        <multi-select [chechList]="chechList" (selected)="selectedList($event)"></multi-select>
+        <br>    
+        <my-button-submit [disabled]="selected.length!=5" [loading]="loading_btn" (submit)="newMatch()">
+        </my-button-submit>
+    </div>
+
+    <div *ngIf="!isStart" class="gestione-match fade-in">
+        <br>
+        <h3>AGGIORNA MATCH</h3>
+        <br>
+        <div class="d-flex flex-row-reverse">
+            <my-confirm-submit [testo]="'Chiudi Match'" [loading]="loading_btn" (submit)="delMatch()">
+            </my-confirm-submit>
+        </div>
+
+        <br>
+        <div class="d-flex flex-row">
+            <h4>CLASSIFICA</h4>
+            <i class="bi bi-chat-text-fill" data-bs-toggle="collapse" href="#collapseClassifica" role="button"
+                aria-expanded="false" aria-controls="collapseClassifica"></i>
+        </div>
+        <div class="collapse show" id="collapseClassifica">
+            <ul class="list-group">
+                <li *ngFor="let item of classifica; let i = index"
+                    class="list-group-item d-flex justify-content-between align-items-center">
+                    {{item.username}}
+                    <span class="badge bg-primary rounded-pill">{{item.punti}}</span>
+                </li>
+            </ul>
+        </div>
+        <br>
+        <div style="text-align: center;">
+            <img src="assets/img/carte.gif" alt="Carte" class="carte">
+        </div>
+        <br>
+        <div class="d-flex flex-row">
+            <h4>NUOVO RECORD</h4>
+            <i class="bi bi-chat-text-fill" data-bs-toggle="collapse" href="#collapseRecord" role="button"
+                aria-expanded="false" aria-controls="collapseRecord"></i>
+        </div>
+
+        <div class="collapse" id="collapseRecord">
+            <div class="row">
+                <div class="col-6 col-sm-4">
+                    <label for="chiamante" class="form-label">CHIAMANTE</label>
+                    <select class="form-select" id="chiamante" [(ngModel)]="selectedChiamante">
+                        <option *ngFor="let item of classifica" [ngValue]="item.id_utente">{{item.username}}</option>
+                    </select>
+                </div>
+                <div class="col-6 col-sm-4">
+                    <label for="chiamato" class="form-label">CHIAMATO</label>
+                    <select class="form-select" id="chiamato" [(ngModel)]="selectedChiamato">
+                        <option *ngFor="let item of classifica" [ngValue]="item.id_utente">{{item.username}}</option>
+                    </select>
+                </div>
+                <div class="col-6 col-sm-4">
+                    <label for="risultato" class="form-label">RISULTATO</label>
+                    <select class="form-select" id="risultato" [(ngModel)]="selectedRisultato">
+                        <option value="2">VITTORIA</option>
+                        <option value="3">SCONFITTA</option>
+                    </select>
+                </div>
+            </div>
+
+            <br>
+            <my-button-submit [disabled]="!selectedChiamante||!selectedChiamato||!selectedRisultato"
+                [loading]="loading_btn" (submit)="onNewRecord()"></my-button-submit>
+        </div>
+        <br>
+        <div class="d-flex flex-row">
+            <h4>LISTA RECORD</h4>
+            <i class="bi bi-chat-text-fill" data-bs-toggle="collapse" href="#collapseLista" role="button"
+                aria-expanded="false" aria-controls="collapseLista"></i>
+        </div>
+        <div class="collapse" id="collapseLista">
+
+            <table-record [record]="record" (selected)="onDeleteRecord($event)"></table-record>
+            <br>
+            <br>
+        </div>
+        <br>
+        <br>
+        <div class="d-flex flex-row-reverse">
+            <my-confirm-submit [testo]="'Chiudi Match'" [loading]="loading_btn" (submit)="delMatch()">
+            </my-confirm-submit>
+        </div>
+        <br>
+        <br>
+    </div>
+</div>
